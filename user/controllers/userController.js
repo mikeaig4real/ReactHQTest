@@ -21,6 +21,14 @@ const registerUser = async (req, res) => {
             message: 'Missing crucial fields'
         });
     };
+    // validate email
+    let emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    if (!emailRegex.test(email)) {
+        return res.status(StatusCodes.BAD_REQUEST).json({
+            status: false,
+            message: 'Email is not valid',
+        });
+    }
     // validate account number existence
     const { status } = await validateAccount({ account_number: accountNo });
     if (!status) {
