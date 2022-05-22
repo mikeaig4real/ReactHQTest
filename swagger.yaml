@@ -1,0 +1,210 @@
+openapi: 3.0.0
+info:
+  title: Tasks API
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://my-task-manager.glitch.me/api/v1
+  variables: {}
+paths:
+  /tasks:
+    get:
+      tags:
+      - Tasks
+      summary: Get All Tasks
+      operationId: GetAllTasks
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    post:
+      tags:
+      - Tasks
+      summary: Create Single Tasks
+      operationId: CreateSingleTasks
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSingleTasksRequest'
+            example:
+              name: Swim
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /tasks/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The task ID
+    patch:
+      tags:
+      - Tasks
+      summary: Update Single Tasks
+      operationId: UpdateSingleTasks
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSingleTasksRequest'
+            example:
+              name: Hunt
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+      - Tasks
+      summary: Delete Single Tasks
+      operationId: DeleteSingleTasks
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+      - Tasks
+      summary: Get Single Tasks
+      operationId: GetSingleTasks
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: Login User
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginUserRequest'
+            example:
+              username: Mike
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: Register User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUserRequest'
+            example:
+              username: Mike
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+components:
+  schemas:
+    CreateSingleTasksRequest:
+      title: CreateSingleTasksRequest
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: Swim
+    UpdateSingleTasksRequest:
+      title: UpdateSingleTasksRequest
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: Hunt
+    DeleteSingleTasksRequest:
+      title: DeleteSingleTasksRequest
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+      example:
+        name: Hunt
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+      - username
+      - password
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      example:
+        username: Mike
+        password: secret
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+      - username
+      - password
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      example:
+        username: Mike
+        password: secret
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+- httpBearer: []
+tags:
+- name: Misc
+  description: ''
+- name: Tasks
+  description: ''
+- name: Auth
+  description: ''
