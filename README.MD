@@ -1,2 +1,2 @@
 # ReactHQRegAPI
-A simple API for registering and authenticating users.
+A simple API for registering users.
